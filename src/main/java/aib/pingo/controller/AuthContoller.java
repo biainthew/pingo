@@ -38,4 +38,14 @@ public class AuthContoller {
     public ResponseEntity<MemberResponseDto.Token> login(@Valid @RequestBody MemberRequestDTO.Login request) {
         return ResponseEntity.ok(memberService.login(request));
     }
+
+    /**
+     * refresh 토큰으로 로그인 연장
+     * @param request MemberRequestDTO.Refresh
+     * @return MemberResponseDto.AccessToken
+     */
+    @PostMapping("/refresh")
+    public ResponseEntity<MemberResponseDto.AccessToken> refresh(@Valid @RequestBody MemberRequestDTO.Refresh request) {
+        return ResponseEntity.ok(memberService.refresh(request.getRefreshToken()));
+    }
 }
